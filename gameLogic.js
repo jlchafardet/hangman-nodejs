@@ -5,6 +5,66 @@ const words = require('./wordList');
 
 const SCORE_FILE = path.join(__dirname, 'hangman-nodejs_score.json');
 
+// Hangman stages represented as ASCII art
+const hangmanStages = [
+    `
+     -----
+     |   |
+         |
+         |
+         |
+         |
+    =========`,
+    `
+     -----
+     |   |
+     O   |
+         |
+         |
+         |
+    =========`,
+    `
+     -----
+     |   |
+     O   |
+     |   |
+         |
+         |
+    =========`,
+    `
+     -----
+     |   |
+     O   |
+    /|   |
+         |
+         |
+    =========`,
+    `
+     -----
+     |   |
+     O   |
+    /|\\  |
+         |
+         |
+    =========`,
+    `
+     -----
+     |   |
+     O   |
+    /|\\  |
+    /    |
+         |
+    =========`,
+    `
+     -----
+     |   |
+     O   |
+    /|\\  |
+    / \\  |
+         |
+    =========`
+];
+
 // Function to get a random word from the predefined list
 function getRandomWord() {
     return words[Math.floor(Math.random() * words.length)].toUpperCase();
@@ -30,6 +90,7 @@ async function displayGuessedLetters(word, guessedLetters) {
 
 // Function to display the current game state
 async function displayGameState(word, guessedLetters, attempts) {
+    console.log(hangmanStages[6 - attempts]); // Display the current hangman stage
     console.log(`Word: ${await displayWord(word, guessedLetters)}`); // Display the word with guessed letters
     await displayGuessedLetters(word, guessedLetters); // Display the guessed letters
     console.log(`Attempts left: ${attempts}`); // Display the number of attempts left

@@ -20,6 +20,7 @@ A simple but scalable Node.js console Hangman game.
 - **Mid-Game Summary**: Periodically displays the current game state, including the word display, guessed letters, and remaining attempts.
 - **End-Game Summary**: Provides a detailed summary at the end of the game, including the final word, the player's guesses, and their score.
 - **Leaderboard**: Top scores are saved and displayed from `hangman-nodejs_score.json`.
+- **Visual Feedback**: Includes a simple ASCII art representation of the hangman that updates with each incorrect guess.
 
 ## Future Enhancements
 
@@ -44,7 +45,7 @@ A simple but scalable Node.js console Hangman game.
 
 1. **Enhanced Console Output**:
    - ~~Improve the display of the word and guessed letters.~~
-   - Add visual elements (e.g., hangman drawing) to represent remaining attempts.
+   - ~~Add visual elements (e.g., hangman drawing) to represent remaining attempts.~~
 
 2. **Difficulty Levels**:
    - Allow players to choose different difficulty levels (easy, medium, hard).
