@@ -11,19 +11,21 @@ function getRandomWord() {
 }
 
 // Function to display the word with guessed letters
-function displayWord(word, guessedLetters) {
-    // Display each letter if guessed, otherwise display an underscore
-    return word.split('').map(letter => guessedLetters.includes(letter) ? letter : '_').join(' ');
+async function displayWord(word, guessedLetters) {
+    const chalk = (await import('chalk')).default; // Dynamically import chalk
+    // Display each letter if guessed in green, otherwise display an underscore in white
+    return word.split('').map(letter => guessedLetters.includes(letter) ? chalk.green(letter) : chalk.white('_')).join(' ');
 }
 
 // Function to display guessed letters
-function displayGuessedLetters(word, guessedLetters) {
+async function displayGuessedLetters(word, guessedLetters) {
+    const chalk = (await import('chalk')).default; // Dynamically import chalk
     // Separate guessed letters into correct and incorrect guesses
     const correctGuesses = guessedLetters.filter(letter => word.includes(letter));
     const incorrectGuesses = guessedLetters.filter(letter => !word.includes(letter));
 
-    console.log(`Correct Guesses: ${correctGuesses.join(', ')}`);
-    console.log(`Incorrect Guesses: ${incorrectGuesses.join(', ')}`);
+    console.log(`Correct Guesses: ${chalk.green(correctGuesses.join(', '))}`);
+    console.log(`Incorrect Guesses: ${chalk.red(incorrectGuesses.join(', '))}`);
 }
 
 // Function to save the player's score to a JSON file
@@ -63,14 +65,14 @@ function displayLeaderboard() {
 }
 
 // Function to play the Hangman game
-function playGame() {
+async function playGame() {
     const word = getRandomWord(); // Get a random word
     let guessedLetters = []; // Array to store guessed letters
     let attempts = 6; // Number of attempts
 
     while (attempts > 0) {
-        console.log(`Word: ${displayWord(word, guessedLetters)}`); // Display the word with guessed letters
-        displayGuessedLetters(word, guessedLetters); // Display the guessed letters
+        console.log(`Word: ${await displayWord(word, guessedLetters)}`); // Display the word with guessed letters
+        await displayGuessedLetters(word, guessedLetters); // Display the guessed letters
         console.log(`Attempts left: ${attempts}`); // Display the number of attempts left
         const guess = readlineSync.question('Guess a letter: ').toUpperCase(); // Prompt the user to guess a letter
 
