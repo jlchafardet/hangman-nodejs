@@ -12,7 +12,18 @@ function getRandomWord() {
 
 // Function to display the word with guessed letters
 function displayWord(word, guessedLetters) {
+    // Display each letter if guessed, otherwise display an underscore
     return word.split('').map(letter => guessedLetters.includes(letter) ? letter : '_').join(' ');
+}
+
+// Function to display guessed letters
+function displayGuessedLetters(guessedLetters) {
+    // Separate guessed letters into correct and incorrect guesses
+    const correctGuesses = guessedLetters.filter(letter => word.includes(letter));
+    const incorrectGuesses = guessedLetters.filter(letter => !word.includes(letter));
+
+    console.log(`Correct Guesses: ${correctGuesses.join(', ')}`);
+    console.log(`Incorrect Guesses: ${incorrectGuesses.join(', ')}`);
 }
 
 // Function to save the player's score to a JSON file
@@ -59,6 +70,7 @@ function playGame() {
 
     while (attempts > 0) {
         console.log(`Word: ${displayWord(word, guessedLetters)}`); // Display the word with guessed letters
+        displayGuessedLetters(guessedLetters); // Display the guessed letters
         console.log(`Attempts left: ${attempts}`); // Display the number of attempts left
         const guess = readlineSync.question('Guess a letter: ').toUpperCase(); // Prompt the user to guess a letter
 
