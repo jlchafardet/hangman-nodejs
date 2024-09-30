@@ -34,7 +34,7 @@ A simple but scalable Node.js console Hangman game.
    - ~~Allow players to enter their names to save scores.~~
 
 2. **Error Handling**:
-   - Handle invalid inputs (e.g., non-alphabetic characters, multiple letters).
+   - ~~Handle invalid inputs (e.g., non-alphabetic characters, multiple letters).~~
    - Provide clear feedback for repeated guesses.
 
 ### Phase 2: User Experience Improvements
