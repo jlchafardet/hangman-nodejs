@@ -22,16 +22,16 @@ A simple but scalable Node.js console Hangman game.
 
 ### Initial Setup
 
-1. **Basic Game Implementation**:
-   - Implement core game mechanics (word selection, letter guessing, win/loss conditions).
-   - Use a predefined list of words.
-   - Console-based user interface.
+1. ~~**Basic Game Implementation**~~:
+   - ~~Implement core game mechanics (word selection, letter guessing, win/loss conditions).~~
+   - ~~Use a predefined list of words.~~
+   - ~~Console-based user interface.~~
 
 ### Phase 1: Basic Enhancements
 
-1. **Leaderboard**:
-   - Store and display top scores in a JSON file.
-   - Allow players to enter their names to save scores.
+1. ~~**Leaderboard**~~:
+   - ~~Store and display top scores in a JSON file.~~
+   - ~~Allow players to enter their names to save scores.~~
 
 2. **Error Handling**:
    - Handle invalid inputs (e.g., non-alphabetic characters, multiple letters).
