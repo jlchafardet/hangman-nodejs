@@ -17,7 +17,7 @@ function displayWord(word, guessedLetters) {
 }
 
 // Function to display guessed letters
-function displayGuessedLetters(guessedLetters) {
+function displayGuessedLetters(word, guessedLetters) {
     // Separate guessed letters into correct and incorrect guesses
     const correctGuesses = guessedLetters.filter(letter => word.includes(letter));
     const incorrectGuesses = guessedLetters.filter(letter => !word.includes(letter));
@@ -70,7 +70,7 @@ function playGame() {
 
     while (attempts > 0) {
         console.log(`Word: ${displayWord(word, guessedLetters)}`); // Display the word with guessed letters
-        displayGuessedLetters(guessedLetters); // Display the guessed letters
+        displayGuessedLetters(word, guessedLetters); // Display the guessed letters
         console.log(`Attempts left: ${attempts}`); // Display the number of attempts left
         const guess = readlineSync.question('Guess a letter: ').toUpperCase(); // Prompt the user to guess a letter
 

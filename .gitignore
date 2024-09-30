@@ -1,3 +1,6 @@
+# Personal
+workflow.json
+hangman-nodejs_score.json
 # Logs
 logs
 *.log
@@ -129,5 +132,3 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-workflow.json
-hangman-nodejs_score.json
