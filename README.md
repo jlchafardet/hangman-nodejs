@@ -34,7 +34,7 @@ A simple but scalable Node.js console Hangman game.
    - ~~Use a predefined list of words.~~
    - ~~Console-based user interface.~~
 
-### Phase 1: Basic Enhancements
+### ~~Phase 1: Basic Enhancements~~
 
 1. ~~**Leaderboard**~~:
    - ~~Store and display top scores in a JSON file.~~
@@ -46,7 +46,7 @@ A simple but scalable Node.js console Hangman game.
 
 ### Phase 2: User Experience Improvements
 
-1. **Enhanced Console Output**:
+1. ~~**Enhanced Console Output**:~~
    - ~~Improve the display of the word and guessed letters.~~
    - ~~Add visual elements (e.g., hangman drawing) to represent remaining attempts.~~
 
