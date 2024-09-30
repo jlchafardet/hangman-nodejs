@@ -147,49 +147,67 @@ function displayLeaderboard() {
     });
 }
 
-// Function to play the Hangman game
-async function playGame() {
-    const word = getRandomWord(); // Get a random word
-    let guessedLetters = []; // Array to store guessed letters
-    let attempts = 6; // Number of attempts
-    const startTime = Date.now(); // Start time of the game
-
-    while (attempts > 0) {
-        await displayGameState(word, guessedLetters, attempts); // Display the current game state
-        const guess = readlineSync.question('Guess a letter: ').toUpperCase(); // Prompt the user to guess a letter
-
-        // Handle invalid inputs
-        if (!/^[A-Z]$/.test(guess)) { // Check if the input is a single alphabetic character
-            console.log('Invalid input. Please enter a single alphabetic character.'); // Display an error message for invalid input
-            continue; // Continue to the next iteration without decrementing attempts
-        }
-
-        if (guessedLetters.includes(guess)) { // Check if the letter has already been guessed
-            console.log('You already guessed that letter.'); // Display a message for repeated guess
-        } else if (word.includes(guess)) { // Check if the guessed letter is in the word
-            guessedLetters.push(guess); // Add the guessed letter to the array
-            console.log('Correct guess!'); // Display a message for correct guess
+// Function to prompt the player to play again
+function promptPlayAgain() {
+    while (true) {
+        const answer = readlineSync.question('Do you want to play again? (yes/no): ').toLowerCase();
+        if (answer === 'yes' || answer === 'y') {
+            return true;
+        } else if (answer === 'no' || answer === 'n') {
+            return false;
         } else {
-            guessedLetters.push(guess); // Add the guessed letter to the array
-            attempts--; // Decrement the number of attempts
-            console.log('Incorrect guess.'); // Display a message for incorrect guess
-        }
-
-        if (word.split('').every(letter => guessedLetters.includes(letter))) { // Check if all letters have been guessed
-            console.log(`Congratulations! You guessed the word: ${word}`); // Display a congratulatory message
-            const playerName = readlineSync.question('Enter your name: '); // Prompt the user to enter their name
-            const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
-            saveScore(playerName, attempts, word, gameDuration, guessedLetters); // Save the player's score
-            displayLeaderboard(); // Display the leaderboard
-            await displayEndGameSummary(word, guessedLetters, attempts); // Display the end-game summary
-            return; // End the game
+            console.log('Invalid input. Please enter "yes" or "no".');
         }
     }
+}
 
-    console.log(`Game over! The word was: ${word}`); // Display a game over message
-    const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
-    displayLeaderboard(); // Display the leaderboard
-    await displayEndGameSummary(word, guessedLetters, attempts); // Display the end-game summary
+// Function to play the Hangman game
+async function playGame() {
+    do {
+        const word = getRandomWord(); // Get a random word
+        let guessedLetters = []; // Array to store guessed letters
+        let attempts = 6; // Number of attempts
+        const startTime = Date.now(); // Start time of the game
+
+        while (attempts > 0) {
+            await displayGameState(word, guessedLetters, attempts); // Display the current game state
+            const guess = readlineSync.question('Guess a letter: ').toUpperCase(); // Prompt the user to guess a letter
+
+            // Handle invalid inputs
+            if (!/^[A-Z]$/.test(guess)) { // Check if the input is a single alphabetic character
+                console.log('Invalid input. Please enter a single alphabetic character.'); // Display an error message for invalid input
+                continue; // Continue to the next iteration without decrementing attempts
+            }
+
+            if (guessedLetters.includes(guess)) { // Check if the letter has already been guessed
+                console.log('You already guessed that letter.'); // Display a message for repeated guess
+            } else if (word.includes(guess)) { // Check if the guessed letter is in the word
+                guessedLetters.push(guess); // Add the guessed letter to the array
+                console.log('Correct guess!'); // Display a message for correct guess
+            } else {
+                guessedLetters.push(guess); // Add the guessed letter to the array
+                attempts--; // Decrement the number of attempts
+                console.log('Incorrect guess.'); // Display a message for incorrect guess
+            }
+
+            if (word.split('').every(letter => guessedLetters.includes(letter))) { // Check if all letters have been guessed
+                console.log(`Congratulations! You guessed the word: ${word}`); // Display a congratulatory message
+                const playerName = readlineSync.question('Enter your name: '); // Prompt the user to enter their name
+                const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
+                saveScore(playerName, attempts, word, gameDuration, guessedLetters); // Save the player's score
+                displayLeaderboard(); // Display the leaderboard
+                await displayEndGameSummary(word, guessedLetters, attempts); // Display the end-game summary
+                break; // End the game loop
+            }
+        }
+
+        if (attempts === 0) {
+            console.log(`Game over! The word was: ${word}`); // Display a game over message
+            const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
+            displayLeaderboard(); // Display the leaderboard
+            await displayEndGameSummary(word, guessedLetters, attempts); // Display the end-game summary
+        }
+    } while (promptPlayAgain()); // Prompt the player to play again
 }
 
 module.exports = playGame;
