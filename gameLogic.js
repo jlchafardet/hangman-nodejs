@@ -106,11 +106,14 @@ async function displayEndGameSummary(word, guessedLetters, attempts) {
 }
 
 // Function to save the player's score to a JSON file
-function saveScore(playerName, score) {
+function saveScore(playerName, score, word, gameDuration, guesses) {
     const scoreData = {
         playerName,
         score,
-        date: new Date().toISOString()
+        date_time: new Date().toISOString(),
+        word_guessed: word,
+        game_duration: gameDuration,
+        guesses
     };
 
     let scores = [];
@@ -137,7 +140,10 @@ function displayLeaderboard() {
 
     console.log('Leaderboard:');
     scores.slice(0, 10).forEach((score, index) => {
-        console.log(`${index + 1}. ${score.playerName} - ${score.score} (${score.date})`);
+        console.log(`${index + 1}. ${score.playerName} - ${score.score} (${score.date_time})`);
+        console.log(`   Word Guessed: ${score.word_guessed}`);
+        console.log(`   Game Duration: ${score.game_duration} seconds`);
+        console.log(`   Guesses: ${score.guesses.join(', ')}`);
     });
 }
 
@@ -146,6 +152,7 @@ async function playGame() {
     const word = getRandomWord(); // Get a random word
     let guessedLetters = []; // Array to store guessed letters
     let attempts = 6; // Number of attempts
+    const startTime = Date.now(); // Start time of the game
 
     while (attempts > 0) {
         await displayGameState(word, guessedLetters, attempts); // Display the current game state
@@ -171,7 +178,8 @@ async function playGame() {
         if (word.split('').every(letter => guessedLetters.includes(letter))) { // Check if all letters have been guessed
             console.log(`Congratulations! You guessed the word: ${word}`); // Display a congratulatory message
             const playerName = readlineSync.question('Enter your name: '); // Prompt the user to enter their name
-            saveScore(playerName, attempts); // Save the player's score
+            const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
+            saveScore(playerName, attempts, word, gameDuration, guessedLetters); // Save the player's score
             displayLeaderboard(); // Display the leaderboard
             await displayEndGameSummary(word, guessedLetters, attempts); // Display the end-game summary
             return; // End the game
@@ -179,6 +187,7 @@ async function playGame() {
     }
 
     console.log(`Game over! The word was: ${word}`); // Display a game over message
+    const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
     displayLeaderboard(); // Display the leaderboard
     await displayEndGameSummary(word, guessedLetters, attempts); // Display the end-game summary
 }

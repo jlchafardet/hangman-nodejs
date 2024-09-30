@@ -21,6 +21,7 @@ A simple but scalable Node.js console Hangman game.
 - **End-Game Summary**: Provides a detailed summary at the end of the game, including the final word, the player's guesses, and their score.
 - **Leaderboard**: Top scores are saved and displayed from `hangman-nodejs_score.json`.
 - **Visual Feedback**: Includes a simple ASCII art representation of the hangman that updates with each incorrect guess.
+- **High Score Details**: Stores detailed information for each high score, including player name, score, date_time, word guessed, game duration, and guesses.
 
 ## Future Enhancements
 
