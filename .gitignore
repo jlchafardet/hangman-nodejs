@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 workflow.json
+hangman-nodejs_score.json
