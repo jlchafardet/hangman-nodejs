@@ -35,7 +35,7 @@ function saveScore(playerName, score) {
     fs.writeFileSync(SCORE_FILE, JSON.stringify(scores, null, 4));
 }
 
-// Function to display the leaderboard.
+// Function to display the leaderboard
 function displayLeaderboard() {
     if (!fs.existsSync(SCORE_FILE)) {
         console.log('No scores available.');

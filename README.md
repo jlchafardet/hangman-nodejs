@@ -33,9 +33,9 @@ A simple but scalable Node.js console Hangman game.
    - ~~Store and display top scores in a JSON file.~~
    - ~~Allow players to enter their names to save scores.~~
 
-2. **Error Handling**:
+2. ~~**Error Handling**~~:
    - ~~Handle invalid inputs (e.g., non-alphabetic characters, multiple letters).~~
-   - Provide clear feedback for repeated guesses.
+   - ~~Provide clear feedback for repeated guesses.~~
 
 ### Phase 2: User Experience Improvements
 
