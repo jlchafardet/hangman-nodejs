@@ -64,11 +64,7 @@ A simple but scalable Node.js console Hangman game.
 
 ### Phase 4: Advanced Features
 
-1. **Multiplayer Mode**:
-   - Implement a mode where multiple players can take turns guessing.
-   - Track scores for each player.
-
-2. **Game Statistics**:
+1. **Game Statistics**:
    - Track and display game statistics (e.g., total games played, win/loss ratio).
    - Store statistics in a JSON file.
 
