@@ -16,7 +16,9 @@ A simple but scalable Node.js console Hangman game.
 - Random word selection from a predefined list.
 - Console-based user interface.
 - Basic error handling for repeated guesses and invalid inputs.
-- Enhanced display of the word and guessed letters with color coding.
+- Enhanced display of the word and guessed letters with color coding and consistent spacing.
+- **Mid-Game Summary**: Periodically displays the current game state, including the word display, guessed letters, and remaining attempts.
+- **End-Game Summary**: Provides a detailed summary at the end of the game, including the final word, the player's guesses, and their score.
 - **Leaderboard**: Top scores are saved and displayed from `hangman-nodejs_score.json`.
 
 ## Future Enhancements

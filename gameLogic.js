@@ -28,6 +28,22 @@ async function displayGuessedLetters(word, guessedLetters) {
     console.log(`Incorrect Guesses: ${chalk.red(incorrectGuesses.join(', '))}`);
 }
 
+// Function to display the current game state
+async function displayGameState(word, guessedLetters, attempts) {
+    console.log(`Word: ${await displayWord(word, guessedLetters)}`); // Display the word with guessed letters
+    await displayGuessedLetters(word, guessedLetters); // Display the guessed letters
+    console.log(`Attempts left: ${attempts}`); // Display the number of attempts left
+}
+
+// Function to display the end-game summary
+async function displayEndGameSummary(word, guessedLetters, attempts) {
+    console.log(`\n--- End of Game Summary ---`);
+    console.log(`Final Word: ${word}`);
+    await displayGuessedLetters(word, guessedLetters); // Display the guessed letters
+    console.log(`Remaining Attempts: ${attempts}`);
+    console.log(`--------------------------\n`);
+}
+
 // Function to save the player's score to a JSON file
 function saveScore(playerName, score) {
     const scoreData = {
@@ -71,9 +87,7 @@ async function playGame() {
     let attempts = 6; // Number of attempts
 
     while (attempts > 0) {
-        console.log(`Word: ${await displayWord(word, guessedLetters)}`); // Display the word with guessed letters
-        await displayGuessedLetters(word, guessedLetters); // Display the guessed letters
-        console.log(`Attempts left: ${attempts}`); // Display the number of attempts left
+        await displayGameState(word, guessedLetters, attempts); // Display the current game state
         const guess = readlineSync.question('Guess a letter: ').toUpperCase(); // Prompt the user to guess a letter
 
         // Handle invalid inputs
@@ -98,12 +112,14 @@ async function playGame() {
             const playerName = readlineSync.question('Enter your name: '); // Prompt the user to enter their name
             saveScore(playerName, attempts); // Save the player's score
             displayLeaderboard(); // Display the leaderboard
+            await displayEndGameSummary(word, guessedLetters, attempts); // Display the end-game summary
             return; // End the game
         }
     }
 
     console.log(`Game over! The word was: ${word}`); // Display a game over message
     displayLeaderboard(); // Display the leaderboard
+    await displayEndGameSummary(word, guessedLetters, attempts); // Display the end-game summary
 }
 
 module.exports = playGame;
