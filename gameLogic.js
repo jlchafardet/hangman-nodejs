@@ -106,7 +106,7 @@ async function displayEndGameSummary(word, guessedLetters, attempts) {
 }
 
 // Function to save the player's score to a JSON file
-function saveScore(playerName, score, word, gameDuration, guesses) {
+function saveScore(playerName, score, word, gameDuration, guesses = []) {
     const scoreData = {
         playerName,
         score,
@@ -118,8 +118,12 @@ function saveScore(playerName, score, word, gameDuration, guesses) {
 
     let scores = [];
     if (fs.existsSync(SCORE_FILE)) {
-        const data = fs.readFileSync(SCORE_FILE);
-        scores = JSON.parse(data);
+        try {
+            const data = fs.readFileSync(SCORE_FILE);
+            scores = JSON.parse(data);
+        } catch (error) {
+            console.error('Error reading or parsing score file:', error);
+        }
     }
 
     scores.push(scoreData);
@@ -135,15 +139,21 @@ function displayLeaderboard() {
         return;
     }
 
-    const data = fs.readFileSync(SCORE_FILE);
-    const scores = JSON.parse(data);
+    let scores = [];
+    try {
+        const data = fs.readFileSync(SCORE_FILE);
+        scores = JSON.parse(data);
+    } catch (error) {
+        console.error('Error reading or parsing score file:', error);
+        return;
+    }
 
     console.log('Leaderboard:');
     scores.slice(0, 10).forEach((score, index) => {
         console.log(`${index + 1}. ${score.playerName} - ${score.score} (${score.date_time})`);
         console.log(`   Word Guessed: ${score.word_guessed}`);
         console.log(`   Game Duration: ${score.game_duration} seconds`);
-        console.log(`   Guesses: ${score.guesses.join(', ')}`);
+        console.log(`   Guesses: ${score.guesses ? score.guesses.join(', ') : 'N/A'}`);
     });
 }
 
