@@ -1,6 +1,7 @@
 # Personal
 workflow.json
 hangman-nodejs_score.json
+\.hangman-nodejs_score.json
 # Logs
 logs
 *.log

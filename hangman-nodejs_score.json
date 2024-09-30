@@ -6,6 +6,24 @@
     },
     {
         "playerName": "Jose",
+        "score": 6,
+        "date_time": "2024-09-30T21:45:30.683Z",
+        "word_guessed": "JAVASCRIPT",
+        "game_duration": 25,
+        "guesses": [
+            "J",
+            "S",
+            "A",
+            "V",
+            "C",
+            "R",
+            "I",
+            "P",
+            "T"
+        ]
+    },
+    {
+        "playerName": "Jose",
         "score": 5,
         "date": "2024-09-30T17:31:56.530Z"
     },
