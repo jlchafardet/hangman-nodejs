@@ -1,112 +1,15 @@
 const fs = require('fs');
 const path = require('path');
-const readlineSync = require('readline-sync');
+const { displayGameState, clearScreen } = require('./graphics');
+const { promptPlayAgain, getGuess, getPlayerName } = require('./input');
 const words = require('./wordList');
 
 const SCORE_FILE = path.join(__dirname, 'hangman-nodejs_score.json');
 
-// Hangman stages represented as ASCII art
-const hangmanStages = [
-    `
-     -----
-     |   |
-         |
-         |
-         |
-         |
-    =========`,
-    `
-     -----
-     |   |
-     O   |
-         |
-         |
-         |
-    =========`,
-    `
-     -----
-     |   |
-     O   |
-     |   |
-         |
-         |
-    =========`,
-    `
-     -----
-     |   |
-     O   |
-    /|   |
-         |
-         |
-    =========`,
-    `
-     -----
-     |   |
-     O   |
-    /|\\  |
-         |
-         |
-    =========`,
-    `
-     -----
-     |   |
-     O   |
-    /|\\  |
-    /    |
-         |
-    =========`,
-    `
-     -----
-     |   |
-     O   |
-    /|\\  |
-    / \\  |
-         |
-    =========`
-];
-
-// Function to get a random word from the predefined list
 function getRandomWord() {
     return words[Math.floor(Math.random() * words.length)].toUpperCase();
 }
 
-// Function to clear the console screen
-function clearScreen() {
-    console.clear();
-}
-
-// Function to display the word with guessed letters
-async function displayWord(word, guessedLetters) {
-    const chalk = (await import('chalk')).default; // Dynamically import chalk
-    // Display each letter if guessed in green, otherwise display an underscore in white
-    return word.split('').map(letter => guessedLetters.includes(letter) ? chalk.green(letter) : chalk.white('_')).join(' ');
-}
-
-// Function to display guessed letters
-async function displayGuessedLetters(word, guessedLetters) {
-    const chalk = (await import('chalk')).default; // Dynamically import chalk
-    // Separate guessed letters into correct and incorrect guesses
-    const correctGuesses = guessedLetters.filter(letter => word.includes(letter));
-    const incorrectGuesses = guessedLetters.filter(letter => !word.includes(letter));
-
-    console.log(`Correct Guesses: ${chalk.green(correctGuesses.join(', '))}`);
-    console.log(`Incorrect Guesses: ${chalk.red(incorrectGuesses.join(', '))}`);
-}
-
-// Function to display the current game state
-async function displayGameState(word, guessedLetters, attempts, showCompleteWord = false) {
-    const chalk = (await import('chalk')).default; // Dynamically import chalk
-    console.log(hangmanStages[6 - attempts]); // Display the current hangman stage
-    if (showCompleteWord) {
-        console.log(`Word: ${word.split('').map(letter => chalk.green(letter)).join(' ')}`); // Display the complete word in green
-    } else {
-        console.log(`Word: ${await displayWord(word, guessedLetters)}`); // Display the word with guessed letters
-    }
-    await displayGuessedLetters(word, guessedLetters); // Display the guessed letters
-    console.log(`Attempts left: ${attempts}`); // Display the number of attempts left
-}
-
-// Function to display the end-game summary
 async function displayEndGameSummary(word, guessedLetters, attempts) {
     console.log(`\n--- End of Game Summary ---`);
     console.log(`Final Word: ${word}`);
@@ -115,7 +18,6 @@ async function displayEndGameSummary(word, guessedLetters, attempts) {
     console.log(`--------------------------\n`);
 }
 
-// Function to save the player's score to a JSON file
 function saveScore(playerName, score, word, gameDuration, guesses = []) {
     const scoreData = {
         playerName,
@@ -142,7 +44,6 @@ function saveScore(playerName, score, word, gameDuration, guesses = []) {
     fs.writeFileSync(SCORE_FILE, JSON.stringify(scores, null, 4));
 }
 
-// Function to display the leaderboard
 function displayLeaderboard() {
     if (!fs.existsSync(SCORE_FILE)) {
         console.log('No scores available.');
@@ -167,21 +68,6 @@ function displayLeaderboard() {
     });
 }
 
-// Function to prompt the player to play again
-function promptPlayAgain() {
-    while (true) {
-        const answer = readlineSync.question('Do you want to play again? (yes/no): ').toLowerCase();
-        if (answer === 'yes' || answer === 'y') {
-            return true;
-        } else if (answer === 'no' || answer === 'n') {
-            return false;
-        } else {
-            console.log('Invalid input. Please enter "yes" or "no".');
-        }
-    }
-}
-
-// Function to play the Hangman game
 async function playGame() {
     let word, guessedLetters, attempts;
     do {
@@ -193,7 +79,7 @@ async function playGame() {
         while (attempts > 0) {
             clearScreen(); // Clear the console screen at the beginning of each turn
             await displayGameState(word, guessedLetters, attempts); // Display the current game state
-            const guess = readlineSync.question('Guess a letter: ').toUpperCase(); // Prompt the user to guess a letter
+            const guess = getGuess(); // Prompt the user to guess a letter
 
             // Handle invalid inputs
             if (!/^[A-Z]$/.test(guess)) { // Check if the input is a single alphabetic character
@@ -216,7 +102,7 @@ async function playGame() {
                 clearScreen(); // Clear the screen before showing the final game state
                 await displayGameState(word, guessedLetters, attempts, true); // Display the complete word
                 console.log(`Congratulations! You guessed the word: ${word}`); // Display a congratulatory message
-                const playerName = readlineSync.question('Enter your name: '); // Prompt the user to enter their name
+                const playerName = getPlayerName(); // Prompt the user to enter their name
                 const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
                 saveScore(playerName, attempts, word, gameDuration, guessedLetters); // Save the player's score
                 clearScreen(); // Clear the screen before showing the leaderboard
