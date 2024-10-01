@@ -43,13 +43,14 @@ async function playGame() {
 
                 if (guessedLetters.has(guess)) { // Check if the letter has already been guessed
                     console.log('You already guessed that letter.'); // Display a message for repeated guess
-                } else if (wordLetters.has(guess)) { // Check if the guessed letter is in the word
-                    guessedLetters.add(guess); // Add the guessed letter to the set
-                    console.log('Correct guess!'); // Display a message for correct guess
                 } else {
                     guessedLetters.add(guess); // Add the guessed letter to the set
-                    attempts--; // Decrement the number of attempts
-                    console.log('Incorrect guess.'); // Display a message for incorrect guess
+                    if (wordLetters.has(guess)) { // Check if the guessed letter is in the word
+                        console.log('Correct guess!'); // Display a message for correct guess
+                    } else {
+                        attempts--; // Decrement the number of attempts
+                        console.log('Incorrect guess.'); // Display a message for incorrect guess
+                    }
                 }
 
                 if (Array.from(wordLetters).every(letter => guessedLetters.has(letter))) { // Check if all letters have been guessed
