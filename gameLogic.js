@@ -70,6 +70,11 @@ function getRandomWord() {
     return words[Math.floor(Math.random() * words.length)].toUpperCase();
 }
 
+// Function to clear the console screen
+function clearScreen() {
+    console.clear();
+}
+
 // Function to display the word with guessed letters
 async function displayWord(word, guessedLetters) {
     const chalk = (await import('chalk')).default; // Dynamically import chalk
@@ -180,6 +185,7 @@ async function playGame() {
         const startTime = Date.now(); // Start time of the game
 
         while (attempts > 0) {
+            clearScreen(); // Clear the console screen at the beginning of each turn
             await displayGameState(word, guessedLetters, attempts); // Display the current game state
             const guess = readlineSync.question('Guess a letter: ').toUpperCase(); // Prompt the user to guess a letter
 

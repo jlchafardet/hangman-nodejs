@@ -24,6 +24,7 @@ A simple but scalable Node.js console Hangman game.
 - **Visual Feedback**: Includes a simple ASCII art representation of the hangman that updates with each incorrect guess.
 - **High Score Details**: Stores detailed information for each high score, including player name, score, date_time, word guessed, game duration, and guesses.
 - **Replay Prompt**: Prompts the player to play again after the game ends, accepting "yes", "no", "y", and "n" as valid inputs.
+- **Clear Screen**: Clears the console screen at the beginning of each turn to avoid scrolling down.
 
 ## Future Enhancements
 
@@ -35,7 +36,6 @@ A simple but scalable Node.js console Hangman game.
    - ~~Console-based user interface.~~
 
 ### ~~Phase 1: Basic Enhancements~~
-
 1. ~~**Leaderboard**~~:
    - ~~Store and display top scores in a JSON file.~~
    - ~~Allow players to enter their names to save scores.~~

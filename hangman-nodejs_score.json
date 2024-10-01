@@ -15,5 +15,23 @@
             "I",
             "N"
         ]
+    },
+    {
+        "playerName": "Jose",
+        "score": 3,
+        "date_time": "2024-10-01T10:09:15.197Z",
+        "word_guessed": "PYTHON",
+        "game_duration": 38,
+        "guesses": [
+            "N",
+            "A",
+            "E",
+            "I",
+            "O",
+            "P",
+            "Y",
+            "T",
+            "H"
+        ]
     }
 ]
