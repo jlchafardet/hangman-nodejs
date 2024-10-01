@@ -89,5 +89,6 @@ function clearScreen() {
 
 module.exports = {
     displayGameState,
-    clearScreen
+    clearScreen,
+    displayGuessedLetters
 };

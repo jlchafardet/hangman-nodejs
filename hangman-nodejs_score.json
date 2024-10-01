@@ -92,6 +92,18 @@
     },
     {
         "playerName": "Jose",
+        "score": 5,
+        "date_time": "2024-10-01T10:52:31.062Z",
+        "word_guessed": "CSS",
+        "game_duration": 12,
+        "guesses": [
+            "V",
+            "C",
+            "S"
+        ]
+    },
+    {
+        "playerName": "Jose",
         "score": 4,
         "date_time": "2024-10-01T10:27:27.494Z",
         "word_guessed": "BACKEND",
