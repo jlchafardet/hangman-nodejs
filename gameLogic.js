@@ -176,6 +176,11 @@ function promptPlayAgain() {
     }
 }
 
+// Function to prompt the player to press any key to continue
+function promptContinue() {
+    readlineSync.question('Press any key to continue...');
+}
+
 // Function to play the Hangman game
 async function playGame() {
     do {
@@ -211,8 +216,9 @@ async function playGame() {
                 const playerName = readlineSync.question('Enter your name: '); // Prompt the user to enter their name
                 const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
                 saveScore(playerName, attempts, word, gameDuration, guessedLetters); // Save the player's score
+                promptContinue(); // Prompt the player to press any key to continue
+                clearScreen(); // Clear the screen before showing the leaderboard
                 displayLeaderboard(); // Display the leaderboard
-                await displayEndGameSummary(word, guessedLetters, attempts); // Display the end-game summary
                 break; // End the game loop
             }
         }
@@ -220,10 +226,16 @@ async function playGame() {
         if (attempts === 0) {
             console.log(`Game over! The word was: ${word}`); // Display a game over message
             const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
+            promptContinue(); // Prompt the player to press any key to continue
+            clearScreen(); // Clear the screen before showing the leaderboard
             displayLeaderboard(); // Display the leaderboard
-            await displayEndGameSummary(word, guessedLetters, attempts); // Display the end-game summary
         }
+
+        clearScreen(); // Clear the screen before asking if the player wants to play again
     } while (promptPlayAgain()); // Prompt the player to play again
+
+    clearScreen(); // Clear the screen if the player decides to leave
+    console.log('Thank you for playing!'); // Display a thank you message
 }
 
 module.exports = playGame;

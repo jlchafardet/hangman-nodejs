@@ -10,7 +10,8 @@ A simple but scalable Node.js console Hangman game.
 2. Guess letters to reveal the hidden word.
 3. You have 6 attempts to guess the word correctly.
 4. Enter your name to save your score if you win.
-5. After the game ends, you will be prompted to play again. Enter "yes" or "no" (or "y" or "n").
+5. After the game ends, you will be prompted to press any key to continue.
+6. The leaderboard will be displayed, and you will be asked if you want to play again. Enter "yes" or "no" (or "y" or "n").
 
 ## Features
 
@@ -25,6 +26,7 @@ A simple but scalable Node.js console Hangman game.
 - **High Score Details**: Stores detailed information for each high score, including player name, score, date_time, word guessed, game duration, and guesses.
 - **Replay Prompt**: Prompts the player to play again after the game ends, accepting "yes", "no", "y", and "n" as valid inputs.
 - **Clear Screen**: Clears the console screen at the beginning of each turn to avoid scrolling down.
+- **Post-Game Prompt**: Prompts the player to press any key to continue after the game ends, clears the screen, and shows the leaderboard.
 
 ## Future Enhancements
 
