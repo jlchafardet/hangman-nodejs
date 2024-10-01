@@ -1,6 +1,6 @@
 const { displayGameState, clearScreen, displayGuessedLetters } = require('./graphics');
 const { promptPlayAgain, getGuess, getPlayerName } = require('./input');
-const { saveScore, displayLeaderboard } = require('./fileManager');
+const { saveScore, displayLeaderboard, readStats, saveStats, displayStats } = require('./fileManager');
 const { getWords } = require('./wordList');
 
 function getRandomWord() {
@@ -22,6 +22,7 @@ async function displayEndGameSummary(word, guessedLetters, attempts) {
 
 async function playGame() {
     let word, guessedLetters, attempts;
+    const stats = readStats();
     do {
         try {
             word = getRandomWord(); // Get a random word
@@ -60,6 +61,7 @@ async function playGame() {
                     const playerName = getPlayerName(); // Prompt the user to enter their name
                     const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
                     saveScore(playerName, attempts, word, gameDuration, Array.from(guessedLetters)); // Save the player's score
+                    stats.wins++;
                     clearScreen(); // Clear the screen before showing the leaderboard
                     console.log(`Current Game Score: ${attempts}`);
                     console.log('==========================');
@@ -71,10 +73,13 @@ async function playGame() {
             if (attempts === 0) {
                 console.log(`Game over! The word was: ${word}`); // Display a game over message
                 const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
+                stats.losses++;
                 clearScreen(); // Clear the screen before showing the leaderboard
                 displayLeaderboard(); // Display the leaderboard
             }
 
+            stats.totalGames++;
+            saveStats(stats); // Save the updated statistics
             clearScreen(); // Clear the screen before asking if the player wants to play again
         } catch (error) {
             console.error('Error during game loop:', error);
@@ -84,6 +89,7 @@ async function playGame() {
     // Display end-game summary and thank you message
     await displayEndGameSummary(word, Array.from(guessedLetters), attempts);
     console.log('Thank you for playing!'); // Display a thank you message
+    displayStats(); // Display game statistics
 }
 
 module.exports = playGame;

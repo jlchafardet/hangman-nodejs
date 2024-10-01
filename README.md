@@ -27,6 +27,7 @@ A simple but scalable Node.js console Hangman game.
 - **Replay Prompt**: Prompts the player to play again after the game ends, accepting "yes", "no", "y", and "n" as valid inputs.
 - **Clear Screen**: Clears the console screen at the beginning of each turn to avoid scrolling down.
 - **Post-Game Prompt**: Prompts the player to press any key to continue after the game ends, clears the screen, and shows the leaderboard.
+- **Game Statistics**: Tracks and displays game statistics, including total games played, wins, losses, and win/loss ratio.
 
 ## Future Enhancements
 
@@ -70,8 +71,8 @@ A simple but scalable Node.js console Hangman game.
 ### Phase 4: Advanced Features
 
 1. **Game Statistics**:
-   - Track and display game statistics (e.g., total games played, win/loss ratio).
-   - Store statistics in a JSON file.
+   - ~~Track and display game statistics (e.g., total games played, win/loss ratio).~~
+   - ~~Store statistics in a JSON file.~~
 
 ### Phase 5: Additional Features
 
