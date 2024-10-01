@@ -50,5 +50,24 @@
             "T",
             "H"
         ]
+    },
+    {
+        "playerName": "Jose",
+        "score": 1,
+        "date_time": "2024-10-01T10:22:20.696Z",
+        "word_guessed": "CLOUD",
+        "game_duration": 49,
+        "guesses": [
+            "P",
+            "N",
+            "R",
+            "A",
+            "E",
+            "O",
+            "C",
+            "L",
+            "U",
+            "D"
+        ]
     }
 ]

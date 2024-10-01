@@ -218,11 +218,12 @@ async function playGame() {
 
             if (word.split('').every(letter => guessedLetters.includes(letter))) { // Check if all letters have been guessed
                 console.log(`Congratulations! You guessed the word: ${word}`); // Display a congratulatory message
+                promptContinue(); // Prompt the player to press any key to continue
+                clearScreen(); // Clear the screen before showing the final game state
                 await displayGameState(word, guessedLetters, attempts, true); // Display the complete word
                 const playerName = readlineSync.question('Enter your name: '); // Prompt the user to enter their name
                 const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
                 saveScore(playerName, attempts, word, gameDuration, guessedLetters); // Save the player's score
-                promptContinue(); // Prompt the player to press any key to continue
                 clearScreen(); // Clear the screen before showing the leaderboard
                 displayLeaderboard(); // Display the leaderboard
                 break; // End the game loop
