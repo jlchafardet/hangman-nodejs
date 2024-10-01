@@ -72,17 +72,7 @@ A simple but scalable Node.js console Hangman game.
    - Track and display game statistics (e.g., total games played, win/loss ratio).
    - Store statistics in a JSON file.
 
-### Phase 5: User Interface Enhancements
-
-1. **Web Interface**:
-    - Transition from console to a web-based interface using Node.js and Express.
-    - Implement a simple front-end using HTML, CSS, and JavaScript.
-
-2. **Mobile Compatibility**:
-    - Ensure the web interface is mobile-friendly.
-    - Consider creating a mobile app using frameworks like React Native.
-
-### Phase 6: Additional Features
+### Phase 5: Additional Features
 
 1. **Custom Word Lists**:
     - Allow players to create and use custom word lists.
@@ -92,7 +82,7 @@ A simple but scalable Node.js console Hangman game.
     - Implement a hint system to help players guess the word.
     - Provide clues based on word definitions or related words.
 
-### Phase 7: Final Touches
+### Phase 6: Final Touches
 
 1. **Polish and Refine**:
     - Refine the user interface for a polished look.
