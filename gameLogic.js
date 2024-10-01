@@ -95,6 +95,7 @@ async function displayGuessedLetters(word, guessedLetters) {
 
 // Function to display the current game state
 async function displayGameState(word, guessedLetters, attempts, showCompleteWord = false) {
+    const chalk = (await import('chalk')).default; // Dynamically import chalk
     console.log(hangmanStages[6 - attempts]); // Display the current hangman stage
     if (showCompleteWord) {
         console.log(`Word: ${word.split('').map(letter => chalk.green(letter)).join(' ')}`); // Display the complete word in green
