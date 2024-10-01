@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { displayGameState, clearScreen } = require('./graphics');
+const { displayGameState, clearScreen, displayGuessedLetters } = require('./graphics');
 const { promptPlayAgain, getGuess, getPlayerName } = require('./input');
 const words = require('./wordList');
 
