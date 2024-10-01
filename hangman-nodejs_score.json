@@ -33,6 +33,21 @@
     },
     {
         "playerName": "Jose",
+        "score": 6,
+        "date_time": "2024-10-01T10:40:13.410Z",
+        "word_guessed": "DATABASE",
+        "game_duration": 15,
+        "guesses": [
+            "A",
+            "D",
+            "T",
+            "B",
+            "S",
+            "E"
+        ]
+    },
+    {
+        "playerName": "Jose",
         "score": 5,
         "date_time": "2024-10-01T10:14:17.979Z",
         "word_guessed": "BACKEND",
@@ -82,6 +97,24 @@
             "Y",
             "T",
             "H"
+        ]
+    },
+    {
+        "playerName": "Jose",
+        "score": 3,
+        "date_time": "2024-10-01T10:43:19.802Z",
+        "word_guessed": "DEVOPS",
+        "game_duration": 26,
+        "guesses": [
+            "N",
+            "A",
+            "E",
+            "R",
+            "D",
+            "V",
+            "O",
+            "P",
+            "S"
         ]
     },
     {

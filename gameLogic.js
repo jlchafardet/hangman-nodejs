@@ -183,10 +183,11 @@ function promptPlayAgain() {
 
 // Function to play the Hangman game
 async function playGame() {
+    let word, guessedLetters, attempts;
     do {
-        const word = getRandomWord(); // Get a random word
-        let guessedLetters = []; // Array to store guessed letters
-        let attempts = 6; // Number of attempts
+        word = getRandomWord(); // Get a random word
+        guessedLetters = []; // Array to store guessed letters
+        attempts = 6; // Number of attempts
         const startTime = Date.now(); // Start time of the game
 
         while (attempts > 0) {
