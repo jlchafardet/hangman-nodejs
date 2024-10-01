@@ -64,7 +64,7 @@ A simple but scalable Node.js console Hangman game.
    - ~~**Implement caching to avoid repeated loading.**~~
 
 2. **Performance Optimization**:
-   - Optimize game logic for efficiency.
+   - ~~Optimize game logic for efficiency.~~
    - Minimize redundant operations and improve data handling.
 
 ### Phase 4: Advanced Features

@@ -25,13 +25,14 @@ async function playGame() {
     do {
         try {
             word = getRandomWord(); // Get a random word
-            guessedLetters = []; // Array to store guessed letters
+            guessedLetters = new Set(); // Use a set to store guessed letters for O(1) lookup
+            const wordLetters = new Set(word); // Use a set to store word letters for O(1) lookup
             attempts = 6; // Number of attempts
             const startTime = Date.now(); // Start time of the game
 
             while (attempts > 0) {
                 clearScreen(); // Clear the console screen at the beginning of each turn
-                await displayGameState(word, guessedLetters, attempts); // Display the current game state
+                await displayGameState(word, Array.from(guessedLetters), attempts); // Display the current game state
                 const guess = getGuess(); // Prompt the user to guess a letter
 
                 // Handle invalid inputs
@@ -40,24 +41,24 @@ async function playGame() {
                     continue; // Continue to the next iteration without decrementing attempts
                 }
 
-                if (guessedLetters.includes(guess)) { // Check if the letter has already been guessed
+                if (guessedLetters.has(guess)) { // Check if the letter has already been guessed
                     console.log('You already guessed that letter.'); // Display a message for repeated guess
-                } else if (word.includes(guess)) { // Check if the guessed letter is in the word
-                    guessedLetters.push(guess); // Add the guessed letter to the array
+                } else if (wordLetters.has(guess)) { // Check if the guessed letter is in the word
+                    guessedLetters.add(guess); // Add the guessed letter to the set
                     console.log('Correct guess!'); // Display a message for correct guess
                 } else {
-                    guessedLetters.push(guess); // Add the guessed letter to the array
+                    guessedLetters.add(guess); // Add the guessed letter to the set
                     attempts--; // Decrement the number of attempts
                     console.log('Incorrect guess.'); // Display a message for incorrect guess
                 }
 
-                if (word.split('').every(letter => guessedLetters.includes(letter))) { // Check if all letters have been guessed
+                if (Array.from(wordLetters).every(letter => guessedLetters.has(letter))) { // Check if all letters have been guessed
                     clearScreen(); // Clear the screen before showing the final game state
-                    await displayGameState(word, guessedLetters, attempts, true); // Display the complete word
+                    await displayGameState(word, Array.from(guessedLetters), attempts, true); // Display the complete word
                     console.log(`Congratulations! You guessed the word: ${word}`); // Display a congratulatory message
                     const playerName = getPlayerName(); // Prompt the user to enter their name
                     const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
-                    saveScore(playerName, attempts, word, gameDuration, guessedLetters); // Save the player's score
+                    saveScore(playerName, attempts, word, gameDuration, Array.from(guessedLetters)); // Save the player's score
                     clearScreen(); // Clear the screen before showing the leaderboard
                     console.log(`Current Game Score: ${attempts}`);
                     console.log('==========================');
@@ -80,7 +81,7 @@ async function playGame() {
     } while (promptPlayAgain()); // Prompt the player to play again
 
     // Display end-game summary and thank you message
-    await displayEndGameSummary(word, guessedLetters, attempts);
+    await displayEndGameSummary(word, Array.from(guessedLetters), attempts);
     console.log('Thank you for playing!'); // Display a thank you message
 }
 
