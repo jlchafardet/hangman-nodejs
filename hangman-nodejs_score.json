@@ -75,6 +75,24 @@
     },
     {
         "playerName": "Jose",
+        "score": 6,
+        "date_time": "2024-10-01T11:25:02.420Z",
+        "word_guessed": "CONTAINERIZATION",
+        "game_duration": 17,
+        "guesses": [
+            "C",
+            "O",
+            "A",
+            "I",
+            "E",
+            "N",
+            "T",
+            "R",
+            "Z"
+        ]
+    },
+    {
+        "playerName": "Jose",
         "score": 5,
         "date_time": "2024-10-01T10:14:17.979Z",
         "word_guessed": "BACKEND",

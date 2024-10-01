@@ -61,7 +61,7 @@ A simple but scalable Node.js console Hangman game.
 1. **Optimized Word List**:
    - ~~Load words from an external file.~~
    - Load words from an API.
-   - Implement caching to avoid repeated loading.
+   - ~~**Implement caching to avoid repeated loading.**~~
 
 2. **Performance Optimization**:
    - Optimize game logic for efficiency.
