@@ -63,6 +63,18 @@
     },
     {
         "playerName": "Jose",
+        "score": 6,
+        "date_time": "2024-10-01T10:50:21.895Z",
+        "word_guessed": "VUE",
+        "game_duration": 9,
+        "guesses": [
+            "V",
+            "U",
+            "E"
+        ]
+    },
+    {
+        "playerName": "Jose",
         "score": 5,
         "date_time": "2024-10-01T10:14:17.979Z",
         "word_guessed": "BACKEND",

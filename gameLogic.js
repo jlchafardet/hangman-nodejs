@@ -128,4 +128,4 @@ async function playGame() {
     console.log('Thank you for playing!'); // Display a thank you message
 }
 
-module.exports = playGame;
+module.exports = playGame; 
