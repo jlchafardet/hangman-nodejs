@@ -1,9 +1,10 @@
 const { displayGameState, clearScreen, displayGuessedLetters } = require('./graphics');
 const { promptPlayAgain, getGuess, getPlayerName } = require('./input');
 const { saveScore, displayLeaderboard } = require('./fileManager');
-const words = require('./wordList');
+const { getWords } = require('./wordList');
 
 function getRandomWord() {
+    const words = getWords();
     return words[Math.floor(Math.random() * words.length)].toUpperCase();
 }
 
