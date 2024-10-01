@@ -65,7 +65,7 @@ A simple but scalable Node.js console Hangman game.
 
 2. **Performance Optimization**:
    - ~~Optimize game logic for efficiency.~~
-   - Minimize redundant operations and improve data handling.
+   - ~~Minimize redundant operations and improve data handling.~~
 
 ### Phase 4: Advanced Features
 

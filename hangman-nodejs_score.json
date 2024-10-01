@@ -152,6 +152,24 @@
     },
     {
         "playerName": "Jose",
+        "score": 4,
+        "date_time": "2024-10-01T11:37:24.256Z",
+        "word_guessed": "FRONTEND",
+        "game_duration": 22,
+        "guesses": [
+            "A",
+            "J",
+            "E",
+            "N",
+            "F",
+            "O",
+            "R",
+            "T",
+            "D"
+        ]
+    },
+    {
+        "playerName": "Jose",
         "score": 3,
         "date_time": "2024-10-01T10:09:15.197Z",
         "word_guessed": "PYTHON",
