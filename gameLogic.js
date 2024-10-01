@@ -241,7 +241,8 @@ async function playGame() {
         clearScreen(); // Clear the screen before asking if the player wants to play again
     } while (promptPlayAgain()); // Prompt the player to play again
 
-    clearScreen(); // Clear the screen if the player decides to leave
+    // Display end-game summary and thank you message
+    await displayEndGameSummary(word, guessedLetters, attempts);
     console.log('Thank you for playing!'); // Display a thank you message
 }
 

@@ -35,6 +35,24 @@
     },
     {
         "playerName": "Jose",
+        "score": 4,
+        "date_time": "2024-10-01T10:27:27.494Z",
+        "word_guessed": "BACKEND",
+        "game_duration": 51,
+        "guesses": [
+            "D",
+            "F",
+            "M",
+            "B",
+            "A",
+            "C",
+            "K",
+            "E",
+            "N"
+        ]
+    },
+    {
+        "playerName": "Jose",
         "score": 3,
         "date_time": "2024-10-01T10:09:15.197Z",
         "word_guessed": "PYTHON",
