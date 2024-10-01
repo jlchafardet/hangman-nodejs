@@ -159,7 +159,7 @@ function displayLeaderboard() {
     }
 
     console.log('Leaderboard:');
-    scores.slice(0, 10).forEach((score, index) => {
+    scores.slice(0, 5).forEach((score, index) => {
         console.log(`${index + 1}. ${score.playerName} - ${score.score} (${score.date_time})`);
         console.log(`   Word Guessed: ${score.word_guessed}`);
         console.log(`   Game Duration: ${score.game_duration} seconds`);
@@ -225,6 +225,8 @@ async function playGame() {
                 const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
                 saveScore(playerName, attempts, word, gameDuration, guessedLetters); // Save the player's score
                 clearScreen(); // Clear the screen before showing the leaderboard
+                console.log(`Current Game Score: ${attempts}`);
+                console.log('==========================');
                 displayLeaderboard(); // Display the leaderboard
                 break; // End the game loop
             }

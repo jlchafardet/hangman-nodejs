@@ -18,6 +18,21 @@
     },
     {
         "playerName": "Jose",
+        "score": 6,
+        "date_time": "2024-10-01T10:33:29.837Z",
+        "word_guessed": "ANGULAR",
+        "game_duration": 201,
+        "guesses": [
+            "A",
+            "N",
+            "G",
+            "U",
+            "L",
+            "R"
+        ]
+    },
+    {
+        "playerName": "Jose",
         "score": 5,
         "date_time": "2024-10-01T10:14:17.979Z",
         "word_guessed": "BACKEND",
