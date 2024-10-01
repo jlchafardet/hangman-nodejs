@@ -94,9 +94,13 @@ async function displayGuessedLetters(word, guessedLetters) {
 }
 
 // Function to display the current game state
-async function displayGameState(word, guessedLetters, attempts) {
+async function displayGameState(word, guessedLetters, attempts, showCompleteWord = false) {
     console.log(hangmanStages[6 - attempts]); // Display the current hangman stage
-    console.log(`Word: ${await displayWord(word, guessedLetters)}`); // Display the word with guessed letters
+    if (showCompleteWord) {
+        console.log(`Word: ${word.split('').map(letter => chalk.green(letter)).join(' ')}`); // Display the complete word in green
+    } else {
+        console.log(`Word: ${await displayWord(word, guessedLetters)}`); // Display the word with guessed letters
+    }
     await displayGuessedLetters(word, guessedLetters); // Display the guessed letters
     console.log(`Attempts left: ${attempts}`); // Display the number of attempts left
 }
@@ -213,6 +217,7 @@ async function playGame() {
 
             if (word.split('').every(letter => guessedLetters.includes(letter))) { // Check if all letters have been guessed
                 console.log(`Congratulations! You guessed the word: ${word}`); // Display a congratulatory message
+                await displayGameState(word, guessedLetters, attempts, true); // Display the complete word
                 const playerName = readlineSync.question('Enter your name: '); // Prompt the user to enter their name
                 const gameDuration = Math.floor((Date.now() - startTime) / 1000); // Calculate game duration in seconds
                 saveScore(playerName, attempts, word, gameDuration, guessedLetters); // Save the player's score
